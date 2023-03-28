@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ApiInfo, PostgresConfig } from './configuration.interface';
-import { API_NAME, POSTGRES_URL } from './constants';
+import { ApiInfo, DatabaseConfig } from './configuration.interface';
+import { API_NAME, MYSQL_DB_URL } from './constants';
 
 @Injectable()
 export class ConfigurationService {
@@ -13,7 +13,7 @@ export class ConfigurationService {
     };
   }
 
-  getPostgresConfig(): PostgresConfig {
-    return { url: this.configService.get<string>(POSTGRES_URL) };
+  getDatabaseConfig(): DatabaseConfig {
+    return { url: this.configService.get<string>(MYSQL_DB_URL) };
   }
 }

@@ -2,6 +2,6 @@ export interface ApiInfo {
   name: string;
 }
 
-export interface PostgresConfig {
+export interface DatabaseConfig {
   url: string;
 }
