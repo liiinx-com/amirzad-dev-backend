@@ -1,2 +1,2 @@
 export const API_NAME = 'API_NAME';
-export const MYSQL_DB_URL = 'MYSQL_DB_URL';
+export const DB_URL = 'DB_URL';

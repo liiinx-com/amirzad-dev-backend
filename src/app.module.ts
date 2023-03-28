@@ -13,10 +13,10 @@ import { ConfigurationService } from './configuration/configuration.service';
       imports: [ConfigurationModule],
       inject: [ConfigurationService],
       useFactory: async (configurationService: ConfigurationService) => ({
-        type: 'mysql',
+        type: 'postgres',
         entities: [],
         url: configurationService.getDatabaseConfig().url,
-        synchronize: true, // ! TODO: NO PROD
+        synchronize: true, // ! TODO: NO PROD => get environment from CI/CD
       }),
     }),
   ],

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ApiInfo, DatabaseConfig } from './configuration.interface';
-import { API_NAME, MYSQL_DB_URL } from './constants';
+import { API_NAME, DB_URL } from './constants';
 
 @Injectable()
 export class ConfigurationService {
@@ -14,6 +14,6 @@ export class ConfigurationService {
   }
 
   getDatabaseConfig(): DatabaseConfig {
-    return { url: this.configService.get<string>(MYSQL_DB_URL) };
+    return { url: this.configService.get<string>(DB_URL) };
   }
 }
