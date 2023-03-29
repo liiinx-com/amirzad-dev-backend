@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigurationService } from './configuration.service';
 import { ConfigService } from '@nestjs/config';
-import { API_NAME, POSTGRES_URL } from './constants';
+import { API_NAME, DB_URL } from './constants';
 
 describe('ConfigurationService', () => {
   let configService: ConfigurationService;
@@ -24,7 +24,7 @@ describe('ConfigurationService', () => {
   it('should get all available config values', () => {
     const availableConfigKeys = {
       [API_NAME]: () => configService.getApiInfo().name,
-      [POSTGRES_URL]: () => configService.getPostgresConfig().url,
+      [DB_URL]: () => configService.getDatabaseConfig().url,
     };
     let timesCalled = 0;
     for (const key in availableConfigKeys) {
