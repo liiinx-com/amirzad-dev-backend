@@ -13,6 +13,8 @@ jobs:
       - run:
           command: npm run test
       - run:
+          command: npm run test:e2e
+      - run:
           command: npm run test:cov
       - codecov/upload
 workflows:

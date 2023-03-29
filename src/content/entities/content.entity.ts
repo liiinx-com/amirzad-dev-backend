@@ -19,11 +19,11 @@ export class Content extends BaseEntity {
   })
   contentType: ContentTypes;
 
-  @Column()
-  order: number;
+  @Column({ default: 0 })
+  order?: number;
 
   @Column({ nullable: true })
-  rate?: number;
+  rating?: number;
 
   @Column({ length: 100 })
   title: string;
@@ -51,4 +51,7 @@ export class Content extends BaseEntity {
 
   @Column()
   content: string;
+
+  @Column({ nullable: true, default: [] })
+  tags?: Array<string>;
 }

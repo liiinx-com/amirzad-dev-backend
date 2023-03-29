@@ -5,7 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigurationService } from './configuration/configuration.service';
 import { ContentModule } from './content/content.module';
-import { Content } from './content/entities/content.entity';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { Content } from './content/entities/content.entity';
       inject: [ConfigurationService],
       useFactory: async (configurationService: ConfigurationService) => ({
         type: 'postgres',
-        entities: [Content],
+        entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         url: configurationService.getDatabaseConfig().url,
         synchronize: true, // ! TODO: NO PROD => get environment from CI/CD
       }),
