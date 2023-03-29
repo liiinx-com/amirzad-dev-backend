@@ -21,3 +21,9 @@
 1. Clone the repository
 2. `cd ./amirzad-dev-backend`
    in progress
+
+## RUN TESTS (Integration and Unit)
+
+1. Clone the repository
+2. `cd ./amirzad-dev-backend`
+3. `npm test`
