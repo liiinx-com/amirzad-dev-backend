@@ -15,3 +15,9 @@
 5. `npm install`
 6. `npm start`
 7. visit http://localhost:3000
+
+## RUN (Docker)
+
+1. Clone the repository
+2. `cd ./amirzad-dev-backend`
+   in progress
