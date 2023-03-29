@@ -28,7 +28,7 @@ describe('ConfigurationService', () => {
     };
     let timesCalled = 0;
     for (const key in availableConfigKeys) {
-      expect(availableConfigKeys[key]()).toEqual(`${key}_VALUE`);
+      expect(availableConfigKeys[key]()).toEqual(`${key}_VALUES`);
       expect(mockConfigService.get).toBeCalledWith(key);
       timesCalled++;
     }
