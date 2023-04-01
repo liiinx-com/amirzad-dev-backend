@@ -22,7 +22,6 @@ import {
   ApiNotFoundResponse,
   ApiBadRequestResponse,
   ApiQuery,
-  ApiParam,
 } from '@nestjs/swagger';
 import { ContentTypes } from './entities/content.entity';
 
@@ -75,8 +74,6 @@ export class ContentsController {
 
     // ! TODO: heart beat for api
     // ! TODO: e2e test invalid dto for create
-    // ! TODO: config Husky
-    // ! TODO: config prettier/pretty-quick
   }
 
   @Post()

@@ -1,4 +1,4 @@
-import { Exclude, Type, Transform } from 'class-transformer';
+import { Exclude } from 'class-transformer';
 import { ContentTypes } from '../entities/content.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import {
@@ -12,7 +12,6 @@ import {
   IsDate,
   MinLength,
   IsNotEmpty,
-  ValidateNested,
   IsArray,
   ArrayMinSize,
   ArrayMaxSize,
