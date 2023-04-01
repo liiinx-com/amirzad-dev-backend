@@ -24,6 +24,11 @@
 2. `cd ./amirzad-dev-backend`
    in progress
 
+## Access API Docs
+
+1. Run the app
+2. Visit [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
 ## RUN TESTS (Integration and Unit)
 
 1. Clone the repository
