@@ -1,20 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Content, ContentTypes } from './entities/content.entity';
+import { ContentCreateDto } from './dto';
 
 @Injectable()
-export class ContentService {
+export class ContentsService {
   constructor(
     @InjectRepository(Content)
     private contentRepository: Repository<Content>,
   ) {}
 
-  async create() {}
+  async create(contentDto: ContentCreateDto): Promise<Content> {
+    return this.contentRepository.save(contentDto);
+  }
 
-  async findAll(contentType: ContentTypes): Promise<Content[]> {
+  async findByType(contentTypes: ContentTypes[]): Promise<Content[]> {
     return this.contentRepository.find({
-      where: { contentType },
+      where: { contentType: In(contentTypes) },
       order: {
         order: 'ASC',
       },

@@ -52,6 +52,6 @@ export class Content extends BaseEntity {
   @Column()
   content: string;
 
-  @Column({ nullable: true, default: [] })
+  @Column({ type: 'json', default: [] })
   tags?: Array<string>;
 }

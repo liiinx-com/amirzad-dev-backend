@@ -1,26 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ContentController } from './content.controller';
-import { ContentService } from './content.service';
-import { CreateContentDto } from './dto';
+import { ContentsController } from './contents.controller';
+import { ContentsService } from './contents.service';
+import { ContentCreateDto } from './dto';
 import { ContentTypes } from './entities/content.entity';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 
-describe('ContentController', () => {
-  let controller: ContentController;
+describe('ContentsController', () => {
+  let controller: ContentsController;
 
   const mockContentService = {};
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [ContentController],
-      providers: [ContentService],
+      controllers: [ContentsController],
+      providers: [ContentsService],
     })
-      .overrideProvider(ContentService)
+      .overrideProvider(ContentsService)
       .useValue(mockContentService)
       .compile();
 
-    controller = module.get<ContentController>(ContentController);
+    controller = module.get<ContentsController>(ContentsController);
   });
 
   describe('DTO validation', () => {
@@ -29,24 +29,24 @@ describe('ContentController', () => {
         content: 'MIN',
         title: 'MIN',
       };
-      const dtoObject = plainToInstance(CreateContentDto, createContentReqDto);
+      const dtoObject = plainToInstance(ContentCreateDto, createContentReqDto);
       const errors = await validate(dtoObject);
       expect(errors.length).toBe(3);
     });
 
     it('should pass on minimal CreateContentDto object', async () => {
-      const createContentReqDto: Partial<CreateContentDto> = {
+      const createContentReqDto: Partial<ContentCreateDto> = {
         contentType: ContentTypes.ABOUT,
         content: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
         title: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
       };
-      const dtoObject = plainToInstance(CreateContentDto, createContentReqDto);
+      const dtoObject = plainToInstance(ContentCreateDto, createContentReqDto);
       const errors = await validate(dtoObject);
       expect(errors.length).toBe(0);
     });
 
     it('should fail on empty tags array of CreateContentDto object', async () => {
-      const createContentReqDto: CreateContentDto = {
+      const createContentReqDto: ContentCreateDto = {
         contentType: ContentTypes.ABOUT,
         content: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
         title: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
@@ -62,13 +62,13 @@ describe('ContentController', () => {
         tags: [],
       };
 
-      const dtoObject = plainToInstance(CreateContentDto, createContentReqDto);
+      const dtoObject = plainToInstance(ContentCreateDto, createContentReqDto);
       const errors = await validate(dtoObject);
       expect(errors.length).toBe(1);
     });
 
     it('should pass on complete CreateContentDto object', async () => {
-      const createContentReqDto: CreateContentDto = {
+      const createContentReqDto: ContentCreateDto = {
         contentType: ContentTypes.ABOUT,
         content: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
         title: 'THIS_CONTENT_IS_LONGER_THAN_MIN_OF_5',
@@ -84,7 +84,7 @@ describe('ContentController', () => {
         tags: ['TAG1', 'TAG2'],
       };
 
-      const dtoObject = plainToInstance(CreateContentDto, createContentReqDto);
+      const dtoObject = plainToInstance(ContentCreateDto, createContentReqDto);
       const errors = await validate(dtoObject);
       console.log('errors', errors);
       expect(errors.length).toBe(0);
