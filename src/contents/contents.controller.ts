@@ -73,8 +73,10 @@ export class ContentsController {
 
     return new ContentResponseDto(content);
 
-    // ! TODO: 2-heart beat for api
-    // ! TODO: 4-e2e test invalid dto for create
+    // ! TODO: heart beat for api
+    // ! TODO: e2e test invalid dto for create
+    // ! TODO: config Husky
+    // ! TODO: config prettier/pretty-quick
   }
 
   @Post()
