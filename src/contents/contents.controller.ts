@@ -13,7 +13,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ContentResponseDto, ContentCreateDto } from './dto';
-import { common } from 'src/utils';
+import { common } from '../utils';
 import { ContentsService } from './contents.service';
 import {
   ApiCreatedResponse,
