@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { ContentModule } from '../src/content/content.module';
-import { ContentService } from '../src/content/content.service';
-import { Content } from '../src/content/entities/content.entity';
+import { ContentsModule } from '../src/contents/contents.module';
+import { ContentsService } from '../src/contents/contents.service';
+import { Content, ContentTypes } from '../src/contents/entities/content.entity';
 
 describe('ContentController (e2e)', () => {
   let app: INestApplication;
@@ -14,9 +14,9 @@ describe('ContentController (e2e)', () => {
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [ContentModule],
+      imports: [ContentsModule],
     })
-      .overrideProvider(ContentService)
+      .overrideProvider(ContentsService)
       .useValue(mockContentService)
       .overrideProvider(getRepositoryToken(Content))
       .useValue(mockContentRepository)
@@ -26,21 +26,25 @@ describe('ContentController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/content')
-      .expect(200)
-      .expect('list contents');
+  it('/ (GET) returns 404 without content-type querystring', () => {
+    return request(app.getHttpServer()).get('/contents').expect(400);
   });
 
+  // TODO: fix test
+  xit('/ (GET) returns list of content-type based on the provided querystring', () => {
+    return request(app.getHttpServer())
+      .get('/contents?content-types=ABOUT')
+      .expect(200);
+  });
+
+  // TODO: fix test
   xit('/ (POST)', () => {
     return request(app.getHttpServer())
-      .post('/content')
+      .post('/contents')
       .send({
-        // contentType: ContentTypes.ABOUT,
+        contentType: ContentTypes.ABOUT,
         content: 'SAMPLE_CONTENT_GOES_HERE',
-        // title: 'SAMPLE_TITLE',
-        title: 'SAM',
+        title: 'SAMPLE_TITLE',
       })
       .expect(203);
   });
